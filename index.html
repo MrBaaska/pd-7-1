@@ -940,6 +940,18 @@
 
       <div class="sidebar-divider"></div>
 
+<div class="sidebar-item">
+        <a href="#" class="sidebar-link danger-link" id="toggle-alert" data-page-key="Ажлын бүртгэл">
+          <i class="fa fa-sitemap"></i>Ажлын бүртгэл
+        </a>
+      </div>
+
+      <div class="sidebar-item">
+        <a href="#" class="sidebar-link danger-link" id="toggle-alert" data-page-key="Хурлын тэмдэглэл">
+          <i class="fa fa-sitemap"></i> Хурлын тэмдэглэл
+        </a>
+      </div>
+
       <div class="sidebar-item">
         <a href="#" class="sidebar-link danger-link" id="toggle-alert" data-page-key="Менежментийн нэгдсэн тогтолцоо">
           <i class="fa fa-sitemap"></i> Менежментийн нэгдсэн тогтолцоо
@@ -1206,6 +1218,8 @@
 
   const staticPageFallbacks = {
       'Ирц бүртгэл': 'irts.html',
+    'Ажлын бүртгэл': 'ajliinBvrtgel.html',
+    'Хурлын тэмдэглэл': 'hural.html',
     'Өдөр тутмын зааварчилгаа': 'zoovorchilgoo.html',
     'Тушаал, стандарт': 'tushaal.html',
     'Зааварчилгаа / Зам засвар': 'zoovorchilgoo.html',
@@ -1422,6 +1436,7 @@
       'iframe { max-width: 100%; }',
       'input, textarea, select { max-width: 100%; }',
       '.container, .wrapper, .dashboard, .main-content { width: 100% !important; max-width: none !important; margin-left: 0 !important; margin-right: 0 !important; }',
+      '.wrap, body > div[class*="max-w-7xl"] { width: 100% !important; max-width: none !important; margin-left: 0 !important; margin-right: 0 !important; }',
       '.table-container, .table-wrapper, [class*="table-container"], [class*="table-wrapper"] { max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }',
       '@media (max-width: 768px) {',
       '  body { min-width: 0 !important; }',
