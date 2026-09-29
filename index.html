@@ -443,6 +443,22 @@
     .main.fullscreen-main {
       padding: 0;
     }
+    body.video-fullscreen {
+      overflow: hidden;
+    }
+    body.video-fullscreen .topbar,
+    body.video-fullscreen .sidebar,
+    body.video-fullscreen .sidebar-overlay,
+    body.video-fullscreen .copyright-badge {
+      display: none;
+    }
+    body.video-fullscreen .main {
+      position: fixed;
+      inset: 0;
+      z-index: 1100;
+      min-height: 100dvh;
+      overflow: hidden;
+    }
 
     /* Welcome / Dashboard panel */
     .dashboard {
@@ -587,6 +603,11 @@
       height: calc(100dvh - var(--topbar-height));
       min-height: calc(100dvh - var(--topbar-height));
       max-height: calc(100dvh - var(--topbar-height));
+    }
+    .main.video-fullscreen-main .content-frame-wrap {
+      height: 100dvh;
+      min-height: 100dvh;
+      max-height: 100dvh;
     }
     .frame-titlebar {
       display: flex;
@@ -1003,6 +1024,10 @@
         <a href="#" class="sidebar-link" id="habea-link" data-page-key="ХАБЭА-н үзлэг"><i class="fa fa-layer-group"></i>ХАБЭА-н үзлэг</a>
       </div>
 
+      <div class="sidebar-item">
+        <a href="surgalt.html" class="sidebar-link" id="surgalt-link" data-page-key="Сургалт"><i class="fa fa-graduation-cap"></i>Сургалт</a>
+      </div>
+
       <div class="sidebar-divider"></div>
       <div class="sidebar-item has-sub" onclick="toggleSub(this)">
         <div class="sidebar-link"><i class="fa fa-calculator"></i> Паспортын үзлэг</div>
@@ -1059,7 +1084,11 @@
   const EDIT_UNLOCK_CODE = '62@1#8457';
   const FULLSCREEN_PAGE_KEYS = new Set([
     'Ажлын бүртгэл',
-    'Хурлын тэмдэглэл'
+    'Хурлын тэмдэглэл',
+    'Зааварчилгаа / Тор засагч'
+  ]);
+  const FULLSCREEN_VIDEO_PAGE_KEYS = new Set([
+    'Зааварчилгаа / Тор засагч'
   ]);
 
   function readLastPage() {
@@ -1505,7 +1534,11 @@
     if (!main) {
       return;
     }
-    main.classList.toggle('fullscreen-main', FULLSCREEN_PAGE_KEYS.has(pageKey));
+    const isFullscreen = FULLSCREEN_PAGE_KEYS.has(pageKey);
+    const isFullscreenVideo = FULLSCREEN_VIDEO_PAGE_KEYS.has(pageKey);
+    main.classList.toggle('fullscreen-main', isFullscreen);
+    main.classList.toggle('video-fullscreen-main', isFullscreenVideo);
+    document.body.classList.toggle('video-fullscreen', isFullscreenVideo);
   }
 
   function getFrameContentHeight(doc) {
